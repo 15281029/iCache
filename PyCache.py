@@ -13,18 +13,25 @@ class Cache(object):
         self.__cache = {}
 
     def hash(self, func):
-        hashkey = pickle.dumps((func.__name__))
+        if isinstance(func, (int, float, str)):
+            hashkey = pickle.dumps((func))
+        else:
+            hashkey = pickle.dumps((func.__name__))
         return hashlib.sha1(hashkey).hexdigest()
 
-    def isobsolete(self, key):
-        return time.time()-self.__cache[key]['time'] > self.__cache[key]['ttl']
+    def is_effective(self, key):
+        if isinstance(key, (int, float, str)):
+            hashkey = key
+        else:
+            hashkey = self.hash(key)
+        return time.time()-self.__cache[hashkey]['time'] < self.__cache[hashkey]['ttl']
 
     @property
-    def isfull(self):
+    def is_full(self):
         return len(self.__cache) >= self.__maxsize
 
     def set(self, hashkey, value, ttl=None):
-        if not self.isfull:
+        if not self.is_full:
             if ttl is None:
                 ttl = self.__ttl
             if hashkey in self.__cache.keys():
@@ -38,8 +45,21 @@ class Cache(object):
             print('Cache is Full.')
             return
 
-    def get(self, key):
-        hashkey = self.hash(key)
+    def get_all(self, key):
+        if isinstance(key, (int, float, str)):
+            hashkey = key
+        else:
+            hashkey = self.hash(key)
+        if hashkey in self.__cache.keys():
+            return self.__cache[hashkey]
+        else:
+            return None
+
+    def get_value(self, key):
+        if isinstance(key, (int, float, str)):
+            hashkey = key
+        else:
+            hashkey = self.hash(key)
         if hashkey in self.__cache.keys():
             return self.__cache[hashkey]['value']
         else:
@@ -58,5 +78,22 @@ class Cache(object):
             return wrapper
         return wrap
 
-    def viewcache(self):
+    def view_cache(self):
         print(self.__cache)
+
+    def delete(self, key=None, para=None):
+        if para in ['all', None]:
+            if para is None:
+                if isinstance(key, (int, float, str)):
+                    hashkey = key
+                else:
+                    hashkey = self.hash(key)
+                if hashkey in self.__cache:
+                    del self.__cache[hashkey]
+                else:
+                    print('No Cache.')
+            elif para is 'all':
+                self.__cache.clear()
+        else:
+            print('Parameter Error.')
+            return
