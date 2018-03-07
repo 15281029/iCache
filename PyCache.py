@@ -1,8 +1,12 @@
 import hashlib
-import inspect
+import json
 import pickle
 import time
 from functools import wraps
+
+__all__ = [
+    'Cache',
+]
 
 
 class Cache(object):
@@ -13,14 +17,16 @@ class Cache(object):
         self.__cache = {}
 
     def hash(self, func):
-        if isinstance(func, (int, float, str)):
+        # if isinstance(func, (int, float, str)):
+        #     hashkey = pickle.dumps((func))
+        if not hasattr(func, '__name__'):
             hashkey = pickle.dumps((func))
         else:
             hashkey = pickle.dumps((func.__name__))
         return hashlib.sha1(hashkey).hexdigest()
 
     def is_effective(self, key):
-        if isinstance(key, (int, float, str)):
+        if not hasattr(key, '__name__'):
             hashkey = key
         else:
             hashkey = self.hash(key)
@@ -46,7 +52,7 @@ class Cache(object):
             return
 
     def get_all(self, key):
-        if isinstance(key, (int, float, str)):
+        if not hasattr(key, '__name__'):
             hashkey = key
         else:
             hashkey = self.hash(key)
@@ -56,7 +62,7 @@ class Cache(object):
             return None
 
     def get_value(self, key):
-        if isinstance(key, (int, float, str)):
+        if not hasattr(key, '__name__'):
             hashkey = key
         else:
             hashkey = self.hash(key)
@@ -84,16 +90,19 @@ class Cache(object):
     def delete(self, key=None, para=None):
         if para in ['all', None]:
             if para is None:
-                if isinstance(key, (int, float, str)):
+                if not hasattr(key, '__name__'):
                     hashkey = key
                 else:
                     hashkey = self.hash(key)
                 if hashkey in self.__cache:
                     del self.__cache[hashkey]
                 else:
-                    print('No Cache.')
+                    print('No Cache')
             elif para is 'all':
                 self.__cache.clear()
         else:
             print('Parameter Error.')
             return
+
+    def dump(self):
+        return json.dumps(self.__cache, ensure_ascii=False)
