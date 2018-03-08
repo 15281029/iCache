@@ -13,7 +13,14 @@ git clone git@github.com:15281029/PyCache.git
 cd PyCache
 python setup.py install
 ```
+
 # Usage
+
+- 自定义缓存大小，全局ttl和局部ttl
+- 手动设置缓存项和缓存结果
+- 装饰器自动设置函数缓存
+- 利用下标访问缓存
+- 可转储为json
 
 ```
 from PyCache import Cache
@@ -58,3 +65,8 @@ False
 
 # TODO
 
+- 实现FIFO和FILO
+
+# 后
+
+欢迎各位大佬fork star
