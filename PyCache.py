@@ -16,6 +16,12 @@ class Cache(object):
 
         self.__cache = {}
 
+    def __getitem__(self, key):
+        return self.get_value(key)
+
+    def __len__(self):
+        return len(self.__cache)
+
     def hash(self, func):
         # if isinstance(func, (int, float, str)):
         #     hashkey = pickle.dumps((func))
