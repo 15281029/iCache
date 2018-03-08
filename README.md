@@ -9,11 +9,13 @@ Python 3.x
 # Install
 
 ```
+pip install iCache
+```
+or
+```
 git clone git@github.com:15281029/iCache.git
 cd PyCache
 python setup.py install
-
-pip install iCache
 ```
 
 # Usage
