@@ -1,4 +1,4 @@
-# PyCache
+# iCache
 
 用 Python 实现缓存机制 
 
@@ -71,6 +71,6 @@ False
 
 - 实现FIFO和FILO
 
-# 后
+# 后记
 
 欢迎各位大佬fork star
