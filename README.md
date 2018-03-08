@@ -9,9 +9,11 @@ Python 3.x
 # Install
 
 ```
-git clone git@github.com:15281029/PyCache.git
+git clone git@github.com:15281029/ipyCache.git
 cd PyCache
 python setup.py install
+
+pip install ipyCache
 ```
 
 # Usage
