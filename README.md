@@ -14,7 +14,7 @@ pip install iCache
 or
 ```
 git clone git@github.com:15281029/iCache.git
-cd PyCache
+cd iCache
 python setup.py install
 ```
 
