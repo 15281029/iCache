@@ -1,4 +1,4 @@
-from PyCache import Cache
+from iCache import Cache
 import time
 
 cache = Cache(maxsize=255, ttl=5)  # 设置全局 ttl缓存有效期 5s
