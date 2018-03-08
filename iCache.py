@@ -4,10 +4,6 @@ import pickle
 import time
 from functools import wraps
 
-__all__ = [
-    'Cache',
-]
-
 
 class Cache(object):
     def __init__(self, maxsize=255, ttl=10):
