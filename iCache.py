@@ -19,8 +19,6 @@ class Cache(object):
         return len(self.__cache)
 
     def hash(self, func):
-        # if isinstance(func, (int, float, str)):
-        #     hashkey = pickle.dumps((func))
         if not hasattr(func, '__name__'):
             hashkey = pickle.dumps((func))
         else:
