@@ -9,11 +9,11 @@ Python 3.x
 # Install
 
 ```
-git clone git@github.com:15281029/ipyCache.git
+git clone git@github.com:15281029/iCache.git
 cd PyCache
 python setup.py install
 
-pip install ipyCache
+pip install iCache
 ```
 
 # Usage
@@ -25,7 +25,7 @@ pip install ipyCache
 - 可转储为json
 
 ```
-from PyCache import Cache
+from iCache import Cache
 import time
 
 cache = Cache(ttl=5)  # 设置全局 ttl缓存有效期 5s
