@@ -1,6 +1,6 @@
 # iCache
 
-用 Python 实现缓存机制 
+用 Python 实现缓存 
 
 # Env
 
@@ -11,7 +11,7 @@ Python 3.x
 ```
 pip install iCache
 ```
-or
+## or
 ```
 git clone git@github.com:15281029/iCache.git
 cd iCache
@@ -61,7 +61,23 @@ print(cache.is_effective(func))
 ```
 {'value': 'foo', 'ttl': 3, 'time': 1520221365.6172993}
 foo
-{1: {'value': 'foo', 'ttl': 3, 'time': 1520221365.6172993}, 2: {'value': 'bar', 'ttl': 5, 'time': 1520221365.6172993}, 'dff8f8595067cae2cb9e004adc8a68c4876acdcc': {'value': 4, 'ttl': 1, 'time': 1520221365.6172993}}
+{
+    1: {
+        'value': 'foo', 
+        'ttl': 3, 
+        'time': 1520221365.6172993
+        }, 
+    2: {
+        'value': 'bar', 
+        'ttl': 5, 
+        'time': 1520221365.6172993
+        }, 
+    'dff8f8595067cae2cb9e004adc8a68c4876acdcc': {
+        'value': 4, 
+        'ttl': 1, 
+        'time': 1520221365.6172993
+        }
+    }
 4
 True
 False
