@@ -59,8 +59,17 @@ time.sleep(3)   # 延时 3s
 print(cache.is_effective(func))
 ```
 ```
-{'value': 'foo', 'ttl': 3, 'time': 1520221365.6172993}
+>>> print(cache.get_all(1))
+{
+    'value': 'foo', 
+    'ttl': 3, 
+    'time': 1520221365.6172993
+}
+
+>>> print(cache.get_value(1))
 foo
+
+>>> cache.view_cache()
 {
     1: {
         'value': 'foo', 
@@ -77,9 +86,15 @@ foo
         'ttl': 1, 
         'time': 1520221365.6172993
         }
-    }
+}
+
+>>> print(cache.get_value(func))
 4
+
+>>> print(cache.is_effective(func))
 True
+
+>>> print(cache.is_effective(func))
 False
 ```
 
