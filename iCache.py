@@ -18,7 +18,7 @@ class Cache(object):
     def __len__(self):
         return len(self.__cache)
 
-    def hash(self, func):
+    def hash(self, func, args=None, kwargs=None):
         if not hasattr(func, '__name__'):
             hashkey = pickle.dumps((func))
         else:
@@ -30,7 +30,10 @@ class Cache(object):
             hashkey = key
         else:
             hashkey = self.hash(key)
-        return time.time()-self.__cache[hashkey]['time'] < self.__cache[hashkey]['ttl']
+        if hashkey in self.__cache:
+            return time.time()-self.__cache[hashkey]['time'] < self.__cache[hashkey]['ttl']
+        else:
+            return None
 
     @property
     def is_full(self):
@@ -87,7 +90,7 @@ class Cache(object):
     def view_cache(self):
         print(self.__cache)
 
-    def delete(self, key=None, para=None):
+    def delete(self, key, para=None):
         if para in ['all', None]:
             if para is None:
                 if not hasattr(key, '__name__'):

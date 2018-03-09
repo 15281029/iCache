@@ -1,4 +1,4 @@
-from PyCache import Cache
+from iCache import Cache
 import time
 
 cache = Cache(maxsize=255, ttl=5)  # 设置全局 ttl缓存有效期 5s
@@ -15,11 +15,11 @@ print(cache.get_value(1))
 # 支持装饰器函数自动保存函数返回值 并设置有效期 1s
 @cache.cache(ttl=1)
 def func(a, b):
+    print('called..................................')
     return a+b
 
 
 func(1, 3)
-func(2, 3)
 # 查看所有缓存信息
 cache.view_cache()
 # 得到函数缓存值
@@ -34,4 +34,4 @@ print(cache[func])
 # 计算当前缓存大小
 print(len(cache))
 # 将缓存转储为 json
-print(cache.dump())
+# print(cache.dump())
