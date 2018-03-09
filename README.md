@@ -1,4 +1,4 @@
-# PyCache
+# iCache
 
 用 Python 实现缓存机制 
 
@@ -14,7 +14,7 @@ pip install iCache
 or
 ```
 git clone git@github.com:15281029/iCache.git
-cd PyCache
+cd iCache
 python setup.py install
 ```
 
@@ -71,6 +71,6 @@ False
 
 - 实现FIFO和FILO
 
-# 后
+# 后记
 
 欢迎各位大佬fork star
