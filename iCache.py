@@ -18,7 +18,7 @@ class Cache(object):
     def __len__(self):
         return len(self.__cache)
 
-    def hash(self, func, args=None, kwargs=None):
+    def hash(self, func):
         if not hasattr(func, '__name__'):
             hashkey = pickle.dumps((func))
         else:
@@ -48,8 +48,8 @@ class Cache(object):
                     self.__cache[hashkey] = {
                         'value': value, 'ttl': ttl, 'time': time.time()}
             else:
-                self.__cache[hashkey] = {'value': value,
-                                         'ttl': ttl, 'time': time.time()}
+                self.__cache[hashkey] = {
+                    'value': value, 'ttl': ttl, 'time': time.time()}
         else:
             print('Cache is Full.')
             return
@@ -90,8 +90,9 @@ class Cache(object):
     def view_cache(self):
         print(self.__cache)
 
-    def delete(self, key, para=None):
-        if para in ['all', None]:
+    def delete(self, key=None, para=None):
+        l = []
+        if para in ['all', 'invalid', None]:
             if para is None:
                 if not hasattr(key, '__name__'):
                     hashkey = key
@@ -103,6 +104,12 @@ class Cache(object):
                     print('No Cache')
             elif para is 'all':
                 self.__cache.clear()
+            elif para is 'invalid':
+                for i in self.__cache:
+                    if not self.is_effective(i):
+                        l.append(i)
+                for j in l:
+                    self.delete(j)
         else:
             print('Parameter Error.')
             return
