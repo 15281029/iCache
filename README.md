@@ -70,6 +70,7 @@ False
 # TODO
 
 - 实现FIFO和FILO
+- 实现同函数多缓存状态
 
 # 后记
 
