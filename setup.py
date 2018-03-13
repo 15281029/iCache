@@ -3,13 +3,13 @@ import os
 import sys
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 setup(
     name='iCache',
-    version='1.0.2',
+    version='1.0.3',
     description='A Python Cache Model',
     url='https://github.com/15281029/iCache',
     classifiers=[
@@ -20,7 +20,7 @@ setup(
     ],
     author='Zhangbo',
     author_email='15281029@bjtu.edu.cn',
-    py_modules=['iCache'],
+    packages=find_packages(exclude=['tests']),
     license='MIT',
     include_package_data=True,
     zip_safe=True,
