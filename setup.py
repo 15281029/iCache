@@ -9,7 +9,7 @@ except:
 
 setup(
     name='iCache',
-    version='1.0.4',
+    version='1.0.3',
     description='A Python Cache Model',
     url='https://github.com/15281029/iCache',
     classifiers=[
